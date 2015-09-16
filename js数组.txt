@@ -1,0 +1,83 @@
+关于javascript数组
+	创建数组的方式有两种，推荐第二种方法
+	第一种是使用Array构造函数，如下面的代码所示。
+	var colors = new Array(); 
+	var colors = new Array(20)；//创建数组长度为20的数组
+	var colors = new Array("red", "blue", "green");//添加数据项
+	第二种是使用数组字面量表示法
+	var colors = ["red", "blue", "green"];  // 创建一个包含3个字符串的数组
+	var names = [];  // 创建一个空数组
+
+	1、遍历
+	推荐使用for循环
+	var list = [1,2,3,4,5,6,7,8,9,0];
+	for (var i = 0, l = list.length; i < l; i++) {
+		console.log(i);
+	};
+	通过 i = list.length 来缓存数组的长度，比不使用缓存的方式要快很多
+
+	2、length属性
+	数组的length属性不是只读的，可以通过设置length的大小来移除末尾项或添加新项
+	var foo = [1, 2, 3, 4, 5, 6];
+	foo.length = 3;
+	foo; // [1, 2, 3]
+
+	foo.length = 6;
+	foo;// firefox:[1, 2, 3, undefined, undefined, undefined] chrome:[1, 2, 3, undefined × 3]，实际上是一样的,新添加的项都是undefined
+
+	3、toString()
+	会返回由数组中每个值的字符串形式拼接而成的一个以逗号分隔的字符串。
+	var foo = [1, 2, 3, undefined, undefined, undefined]
+	foo.toString();// "1,2,3,,,"
+	
+	4、sort() 排序
+	sort()方法会调用每个数组项的toString()转型方法，
+	然后比较得到的字符串，
+	即使数组中的每一项都是数值，sort()方法比较的也是字符串
+	var values = [0, 1, 5, 10, 15]; 
+	values.sort(); // 0,1,10,15,5
+	sort()方法可以接收一个比较函数作为参数，
+	以便我们指定哪个值位于哪个值的前面。
+	var a = [10,122,12,11,112];
+		console.log(a.sort(function(a,b) {
+    	return a-b; //由小到大
+	}));
+
+	5、every()
+	every() 方法测试数组的所有元素是否都通过了指定函数的测试。
+	例子:
+	var numbers = [1,2,3,4,5,4,3,2,1];
+	var passed = numbers.every(function(item, index, array){ 
+		return (item > 2); 
+	});  // passed的值为false
+
+	6、some()
+	some() 方法测试数组中的某些元素是否通过了指定函数的测试。
+	例子:
+	var numbers = [1,2,3,4,5,4,3,2,1];
+	var passed = numbers.some(function(item, index, array){ 
+		return (item > 2); 
+	}); // passed的值为true
+
+	7、filter()
+	filter() 方法利用所有通过指定函数测试的元素创建一个新的数组，并返回。
+	例子:
+	var numbers = [1,2,3,4,5,4,3,2,1]; 
+	var filtered = numbers.map(function(item, index, array){ 
+		return item > 2; 
+	}); //filtered的值为[3,4,5,4,3]
+
+	8、map()
+	map() 方法返回一个由原数组中的每个元素调用一个指定方法后的返回值组成的新数组。
+	例子:求数组中每个元素的平方根
+	var numbers = [1, 4, 9];
+	var roots = numbers.map(Math.sqrt);
+	//roots的值为[1, 2, 3]
+
+	
+		
+
+
+
+
+

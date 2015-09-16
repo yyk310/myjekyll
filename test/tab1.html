@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+   
+    <style>
+        li {
+    list-style: none;
+}
+ 
+.nav_block li {
+    float: left;
+   
+    padding: 0;
+} 
+
+.nav_block a:link, .nav_block a:visited, .nav_block a:active {
+    
+    border-bottom:  1px solid #c8d3de;
+    color: #333;
+    float: left;
+    letter-spacing: 1px;
+    padding: 4px 10px;
+    text-decoration: none;
+}.active{
+    background-color: #fff;
+    border-color: #c8d3de #c8d3de #fff;
+    border-style: solid;
+    border-width: 1px;
+    color: #333;
+    letter-spacing: 0;
+    margin-top: 0;
+    padding: 4px 10px;
+}.nav_block a.active:link, .nav_block a.active:visited, .nav_block a.active:active {
+    background-color: #fff;
+    border-color: #c8d3de #c8d3de #fff;
+    border-style: solid;
+    border-width: 1px;
+    color: #333;
+    letter-spacing: 0;
+    margin-top: 0;
+    padding: 4px 10px;
+}
+    </style>
+</head>
+<body>
+    <ul class="nav_block" id="tab_ul">
+  <li ><a href="#" class="active">Home</a></li>
+  <li><a href="#">Profile</a></li>
+  <li><a href="#">Demo</a></li>
+</ul>
+<script type="text/javascript" src="http://esf.js.soufunimg.com/esf/zu/js/libs/jquery-1.7.1.min.js"></script>
+    <script>
+        // (function(){
+        //     var $li = $("#tab_ul a");
+        //    $li.on('click',function(){
+        //        $li.removeClass();
+        //        $(this).addClass("active");
+        //    })
+        // }())
+        
+        (function(win){
+            var tab = (function(){
+                var Tab = function(){
+                    return new Tab.
+                }
+                Tab.fnStart = Tab.prototype = {
+                    init:function(options){
+                        this.obj = document.querySelectorAll(options.element)[0];
+                        this.trigger = this.obj.querySelectorAll(options.triggers);
+                        this.content = this.obj.querySelectorAll(options.content);
+                        
+                    },
+                    trigger:function(){
+                        
+                    }
+                }
+            }())
+            win.tab = tab;
+        }(window))
+    </script>
+</body>
+</html>

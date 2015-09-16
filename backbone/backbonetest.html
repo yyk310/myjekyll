@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <button id="check">新手报到</button>
+    <ul id="world-list"></ul>
+
+<script type="text/javascript" src="http://img.soufun.com/rent/image/rent/js/maplist/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="underscore.js"></script>
+<script type="text/javascript" src="backbone.js"></script>
+<script>
+   var model = new Backbone.Model();
+   model.set("name","hello");
+   model.get("name");
+   var model1 = new Backbone.Model({"name":"haha"}),
+        model2 = new Backbone.Model({"name":"heihei"}),
+        models = new Backbone.Collection();
+        models.add(model);
+        models.add(model1);
+        models.add(model2);
+   var M = Backbone.Model.extend({
+           defaults:{"name":"hellooooo","age":12},
+           url:"/user",
+           initialize:function(){
+               this.on("change:name",function(){
+                   alert("name changed");
+               })
+               this.on("change:age",function(){
+                   alert("age changed");
+               })
+           }, 
+           sayName:function(){
+               alert("my name is cui ning")
+           },
+           name:"cuining"
+       },{
+           hello:function(){
+                alert("hello~")
+           }
+       })    
+   var newM = new M();
+   var V = Backbone.View.extend({
+       initialize:function(){
+           this.listenTo(this.model,"change",this.show)
+       },
+       show:function(){
+           alert(this.model.get("name"))
+       }
+   }) 
+   var v = new V({model:newM});
+   Backbone.sync = function(method,model){
+       alert(method);
+       model.id =1;
+   }
+    
+</script>
+</body>
+</html>
