@@ -74,6 +74,26 @@
 	var roots = numbers.map(Math.sqrt);
 	//roots的值为[1, 2, 3]
 
+
+数组的拷贝
+	var numbers = [2,0,0,9];
+	var copyed1 = numbers.slice(0); // 返回数组的拷贝数组，是一个新的数组，不是指向
+	var copeed2 = numbers.concat()  // 同上
+获得数组中的最大值
+	// 定义一个函数
+	function arr_max(){
+		var i = 0,
+				max = this[0];
+		for(i = 1;i < this.length; i++){
+			if(max < this[i]) max = this[i];
+		}		
+		return max;
+	}
+	// 赋值给prototype属性
+	Array.prototype.max = arr_max;
+	// 测试
+	var numbers = [2,0,0,9];
+	console.log(numbers.max()); // 9
 	
 		
 
