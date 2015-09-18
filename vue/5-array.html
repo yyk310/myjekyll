@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/vue/0.12.14/vue.min.js"></script>
+</head>
+<body>
+<div id="repeater">
+	{{title}}
+	<ul >
+		<li v-repeat="user">
+			{{$index}} my name is {{name}} !
+		</li>
+	</ul>
+
+	<!--向数组中添加新元素-->
+	<input v-model="addname" v-on="keyup:add | key 13">
+	<button v-on="click:add">添加</button>
+	<button v-on="click:remove">移除最后一项</button>
+
+	<!--原始数组类型 可以通过$value获取-->
+	<ul>
+	<li v-repeat="number">
+			 {{$value}} 
+		</li>
+	</ul>
+</div>
+<script type="text/javascript">
+	var vm = new Vue({
+		el:"#repeater",
+
+		data:{
+			title:"大家好这里是你妹电台～",
+			addname:"",
+			user:[
+			{
+				name:"terry"
+			},
+			{
+				name:"jeff"
+			},
+			{
+				name:"lily"
+			}]
+			,
+			number:[2,0,0,9]
+		},
+		methods:{
+			add:function(){
+				if (this.addname) {this.user.push({name:this.addname})};				
+			},
+			remove:function(){
+				this.user.$remove(this.user.length-1);
+			}
+		}
+	})
+</script>
+</body>

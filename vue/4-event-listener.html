@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/vue/0.12.14/vue.min.js"></script>
+</head>
+<body>
+<div id="listener">
+	<p>{{number}}</p>
+	<button v-on="click:add">click me then add</button>	
+	<!--多个事件绑定，用逗号分隔-->
+	<button v-on="click:reset,mouseover:reset">重置</button>
+	<!--直接使用表达式的形式-->
+	<button v-on="click:number++">click me then add</button>
+	<button v-on="click:number=0">重置</button>
+	<!--输入框内按下回车才会触发事件  关于key过滤器可以参考官网api  http://vuejs.org/api/filters.html#key-->
+
+	<input v-on="keyup:entertest | key 13" >键盘测试</button>
+</div>
+<script type="text/javascript">
+    
+	var vm = new Vue({
+		el:"#listener",
+		data:{
+			number:0
+		},
+		methods:{
+			add:function(){
+				this.number++;
+			},
+			reset:function(){
+				this.number = 0;
+			},
+			entertest:function(){
+				alert('我是enter');
+			}
+		}
+	})
+</script>
+</body>
