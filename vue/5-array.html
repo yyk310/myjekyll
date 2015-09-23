@@ -3,13 +3,13 @@
 
 <head>
 	<meta charset="utf-8">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/vue/0.12.14/vue.min.js"></script>
+<script src="http://esf.js.soufunimg.com/esf/zu/js/vue.js"></script>
 </head>
 <body>
 <div id="repeater">
 	{{title}}
 	<ul >
-		<li v-repeat="user">
+		<li v-repeat="user |filterBy searchText">
 			{{$index}} my name is {{name}} !
 		</li>
 	</ul>
@@ -20,6 +20,7 @@
 	<button v-on="click:remove">移除最后一项</button>
 
 	<!--原始数组类型 可以通过$value获取-->
+	<input v-model="searchText">
 	<ul>
 	<li v-repeat="number">
 			 {{$value}} 
