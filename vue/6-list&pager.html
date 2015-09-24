@@ -1,0 +1,186 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>专题列表</title>
+    <link href="~/Resource/Css/Site.css" rel="stylesheet" />   
+    <script src="http://esf.js.soufunimg.com/esf/zu/js/libs/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="http://esf.js.soufunimg.com/esf/zu/js/vue.js" type="text/javascript"></script>
+</head>
+<body>
+    <div class="slshowPart" id="sls_list"> 
+       房源id<input type="text" v-model="query" />
+            专题名称<select v-model="droptype">
+                <option value="1">top10专题</option>
+                <option value="2">房管房专题</option>
+            </select>
+            <input type="button" value="查询" v-on="click:search(1)" />
+            <div class="sldatafix">
+                <table class="sldatatablefix">
+                    <thead>
+                        <tr class="sldatatableheaderfix">
+                            <td>专题类型</td>
+                            <td>房源id</td>
+                            <td>房源类型</td>
+                            <td>区县</td>
+                            <td>商圈</td>
+                            <td>楼盘名称</td>
+                            <td>价格</td>
+                            <td>物业类型</td>
+                            <td>联系人</td>
+                            <td>联系电话</td>
+                            <td>刷新</td>
+                            <td>删除</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-repeat="items | filterBy query">
+                            <td>{{Ssa_type_desc}}</td>
+                            <td>{{Ssa_HouseId}}</td>
+                            <td>{{Ssa_houseType}}</td>
+                            <td>{{Ssa_district}}</td>
+                            <td>{{Ssa_comarea}}</td>
+                            <td>{{Ssa_projName}}</td>
+                            <td>原始价格{{Ssa_price}}-真实价格{{Ssa_fact_price}}{{Ssa_price_type}}</td>
+                            <td>{{Ssa_purpose}}</td>
+                            <td>{{Ssa_link_man}}</td>
+                            <td>{{Ssa_phone}}</td>
+                            <td><a data-id="{{Ssa_id}}" v-on="click:ref($event)">刷新</a> </td>
+                            <td><a data-id="{{Ssa_id}}" v-on="click:del($event)">删除</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <ul class="pagination" v-if="totalPage>1">
+                    <li><a href="javascript:void(0)" v-on="click:search(1)">首页</a></li>
+                    <li><a href="javascript:void(0);" v-on="click:prev">上一页</a></li>
+                    <li v-repeat="page in pages"><a href="javascript:void(0);" v-class="{true:'active'}[pageIndex==page]" v-on="click:loadPage(page)">{{ page }}</a></li>
+                    <li><a href="javascript:void(0);" v-on="click:next">下一页</a>
+                    </li>
+                    <li><a href="javascript:void(0)"
+                        v-on="click:search(totalPage)">末页</a></li>
+                </ul>
+            </div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:"#sls_list",
+            data:{
+                droptype:"1",// 专题类型
+                query:"",// houseid
+                pageSize : 12,// 一页显示的数目
+                pageIndex : 1,// 当前页码
+                pages : [], // 页码集合[1,2,3...]
+                totalPage : 1, // 总数
+                endPage : 1, // 最后一页
+                items:{} // list集合
+            },
+            methods:{
+                // 查询
+                search:function(page){
+                    var self = this;
+                    self.pageIndex = page||self.pageIndex;
+                    $.ajax({
+                        type:"get",
+                        url:"/SpecialSubjecActivity/SpecialSubjecActivityList.do",
+                        data:{
+                            pageSize: self.pageSize,
+                            pageIndex: self.pageIndex,
+                            htype: self.droptype,
+                            houseid:self.query
+                        },
+                        dataType:"json",
+                        cache:false,
+                        async:false
+                    }).done(function(data){
+                        self.items = eval(data.entitylist);
+
+                        self.totalPage = Math.ceil(data.count / self.pageSize);
+                        self.endPage = self.totalPage;
+                        if (self.totalPage > 2) {
+                            if (self.pageIndex > 1 && self.pageIndex < self.totalPage) {
+                                self.pages = [
+                                    self.pageIndex - 1,
+                                    self.pageIndex,
+                                    self.pageIndex + 1
+                                ];
+                            } else if (self.pageIndex == 1) {
+                                self.pages = [
+                                    self.pageIndex,
+                                    self.pageIndex + 1,
+                                    self.pageIndex + 2
+                                ];
+                            } else if (self.pageIndex == self.totalPage) {
+                                self.pages = [
+                                    self.pageIndex - 2,
+                                    self.pageIndex - 1,
+                                    self.pageIndex
+                                ];
+                            };
+                        } else {
+                            self.pages = [1, 2];
+                        }
+                    });
+                },
+                // 下一页
+                next:function(){
+                    if (this.pageIndex < this.totalPage) {
+                        this.pageIndex++;
+                        this.search();
+                    }
+                },
+                // 上一页
+                prev:function(){
+                    if (this.pageIndex > 1) {
+                        this.pageIndex--;
+                        this.search();
+                    }
+                },
+                // 点击页码
+                loadPage:function(page){
+                    this.pageIndex = page;
+                    this.search();
+                },
+                 // 刷新
+                ref:function (e) {
+                    if (confirm("确定刷新？")) {
+                        var id = e.target.getAttribute("data-id"),
+                            url = "/SpecialSubjecActivity/FreshenSpecialSubjecActivity.do";
+
+                        this.request(url, id);
+                    }
+                },
+                // 删除
+                del:function (e) {
+                    if (confirm("确定删除？")) {
+                        var id = e.target.getAttribute("data-id"),
+                           url = "/SpecialSubjecActivity/DelSubjecActivity.do";
+
+                        this.request(url, id);
+                    }
+                },
+                // 异步请求并返回结果
+                request:function (url, id) {
+                    var self = this;
+                    $.ajax({
+                        type:"get",
+                        url:url+ "?id=" + id,
+                        dataType:"json"
+                    }).done(function(data){
+                        if (data.code === 100) {
+                            self.search();
+                        }
+                        alert(data.message);
+                    })                
+                }
+            },
+            // 在编译完成后调用
+            compiled:function(){
+                this.search();
+            }
+        })        
+    </script>
+</body>
+</html>
