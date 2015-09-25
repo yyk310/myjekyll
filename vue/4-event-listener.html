@@ -8,9 +8,9 @@
 <body>
 <div id="listener">
 	<p>{{number}}</p>
-	<button v-on="click:add">click me then add</button>	
+	<button v-on="click:add,click:number++">click me then add</button>	
 	<!--多个事件绑定，用逗号分隔-->
-	<button v-on="click:reset,mouseover:reset">重置</button>
+	<button v-on="click:reset">重置</button>
 	<!--直接使用表达式的形式-->
 	<button v-on="click:number++">click me then add</button>
 	<button v-on="click:number=0">重置</button>
@@ -28,6 +28,7 @@
 		methods:{
 			add:function(){
 				this.number++;
+				alert("added")
 			},
 			reset:function(){
 				this.number = 0;
