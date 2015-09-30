@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+
+<style type="text/css">
+.pagination
+{
+display: inline-block;
+padding-left: 0;
+margin: 20px 0;
+border-radius: 4px;
+float: right;
+}
+
+.pagination > li
+{
+display: inline;
+}
+
+.pagination > li > a
+{
+position: relative;
+float: left;
+padding: 6px 12px;
+margin-left: -1px;
+line-height: 1.42857143;
+color: #337ab7;
+text-decoration: none;
+background-color: #fff;
+border: 1px solid #ddd;
+}
+
+.pagination > li > a:hover
+{
+    z-index: 3;
+    color: #23527c;
+    background-color: #eee;
+    border-color: #ddd;
+}
+
+.pagination > li > a.active
+{
+    z-index: 2;
+    color: #ffffff;
+    background-color: #428bca;
+    border-color: #428bca;
+    cursor: default;
+}
+</style>
+</head>
+<body>
+<div id="parent">
+ <page-components v-if="totalPage>1" totalPage="{{totalPage}}" pageSize="{{pageSize}}" pageIndex="{{pageIndex}}" pages="{{pages}}"></page-components>
+</div>
+<script src="http://esf.js.soufunimg.com/esf/zu/js/vue.js"></script>
+<script type="text/javascript">
+var pageconf =  {
+        pageSize: 12,// 一页显示的数目
+        pageIndex: 1,// 当前页码
+        pages: [1,2,3], // 页码集合[1,2,3...]
+        totalPage: 3, // 总数        
+        items: {} // list集合
+    }
+
+Vue.component('page-components', {
+  props: ['pageSize', 'pageIndex', 'pages', 'totalPage'],
+  template: '<ul class="pagination">' +
+                                '<li><a href="javascript:void(0)" v-on="click:search(1)">首页</a></li>' +
+                                '<li><a href="javascript:void(0);" v-on="click:prev">上一页</a></li>' +
+                                '<li v-repeat="page in pages"><a href="javascript:void(0);" v-class="{true:\'active\'}[pageIndex==page]" v-on="click:loadPage(page)">{{ page }}</a></li>' +
+                                '<li><a href="javascript:void(0);" v-on="click:next">下一页</a></li>' +
+                                '<li><a href="javascript:void(0)" v-on="click:search(totalPage)">末页</a></li></ul>',
+  data:function(){
+    return pageconf;
+  },
+  methods: {
+    // 下一页
+    next: function () {
+        if (this.pageIndex < this.totalPage) {
+            this.pageIndex++;
+            this.search();
+        }
+    },
+    // 上一页
+    prev: function () {
+        if (this.pageIndex > 1) {
+            this.pageIndex--;
+            this.search();
+        }
+    },
+    // 点击页码
+    loadPage: function (page) {
+        this.pageIndex = page;
+        this.search();
+    },
+    // 查询
+    search: function () {
+        this.pageIndex = arguments[0] || this.pageIndex;
+        // dosomthing...
+        alert(this.pageIndex);
+    }
+  }                              
+});
+new Vue({
+    el: '#parent',
+    data:pageconf
+})
+</script>
+</body>
