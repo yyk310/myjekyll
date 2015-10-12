@@ -52,7 +52,7 @@ border: 1px solid #ddd;
 </head>
 <body>
 <div id="parent">
- <page-components v-if="totalPage>1" totalPage="{{totalPage}}" pageSize="{{pageSize}}" pageIndex="{{pageIndex}}" pages="{{pages}}"></page-components>
+ <page-components v-if="totalPage>1" totalPage="{{totalPage}}" pageSize="{{pageSize}}" pageIndex="{{pageIndex}}" pages="{{pages}}" shouCount="{{true}}"></page-components>
 </div>
 <script src="http://esf.js.soufunimg.com/esf/zu/js/vue.js"></script>
 <script type="text/javascript">
@@ -61,17 +61,22 @@ var pageconf =  {
         pageIndex: 1,// 当前页码
         pages: [1,2,3], // 页码集合[1,2,3...]
         totalPage: 3, // 总数        
-        items: {} // list集合
+        items: {}, // list集合
+        count:0,
+        showCount:false
     }
 
 Vue.component('page-components', {
-  props: ['pageSize', 'pageIndex', 'pages', 'totalPage'],
+  props: ['pageSize', 'pageIndex', 'pages', 'totalPage','count'],
   template: '<ul class="pagination">' +
                                 '<li><a href="javascript:void(0)" v-on="click:search(1)">首页</a></li>' +
                                 '<li><a href="javascript:void(0);" v-on="click:prev">上一页</a></li>' +
                                 '<li v-repeat="page in pages"><a href="javascript:void(0);" v-class="{true:\'active\'}[pageIndex==page]" v-on="click:loadPage(page)">{{ page }}</a></li>' +
                                 '<li><a href="javascript:void(0);" v-on="click:next">下一页</a></li>' +
-                                '<li><a href="javascript:void(0)" v-on="click:search(totalPage)">末页</a></li></ul>',
+                                '<li><a href="javascript:void(0)" v-on="click:search(totalPage)">末页</a></li>' +
+                                '<li v-if="showCount"><a style="color:grey;">共{{count}}条记录</a></li>'+
+
+                                '</ul>',
   data:function(){
     return pageconf;
   },
