@@ -1,0 +1,14 @@
+{
+  "name": "zufang",
+  "version": "1.0.0",
+  "description": "from cncc",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "cuining",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^1.2.0-beta6"
+  }
+}
