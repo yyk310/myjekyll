@@ -1,0 +1,40 @@
+webpack.config参数详解
+1、entry
+	可以是字符串、数组或者对象
+	1.1 字符串： entry: './main.js'
+	1.2 数组：entry: [
+     		'./pageA.js',
+     		'./pageB.js'
+	 	]
+	1.3 对象：entry:{
+			pageA:'./pageA.js',
+			pageB:'./pageB.js'
+		} 	
+2、output
+	output用于地故意构建后的文件输出，包含path和filename两个主要参数
+	output:{
+		path:'./dist',
+		filename:'[name].js'
+	}
+	如果在entry中包含多个文件，filename可以对应的更改为[name].js，用于定义不同文件构建后的名字	
+3、module
+	模块相关
+	3.1 module.loaders  自动应用加载程序的数组
+	module.loaders: [
+	  {
+	    // "test" 通过正则表达式去匹配不同后缀的文件名
+	    test: /\.jsx$/,
+
+	    // "include" 通常用于匹配文件夹
+	    include: [
+	      path.resolve(__dirname, "app/src"),
+	      path.resolve(__dirname, "app/test")
+	    ],
+
+	    // "exclude" should be used to exclude exceptions
+	    // try to prefer "include" when possible
+
+	    // the "loader"
+	    loader: "babel-loader"
+	  }
+	]	

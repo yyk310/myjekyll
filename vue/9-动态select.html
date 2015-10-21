@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+<script src="http://esf.js.soufunimg.com/esf/zu/js/vue.js"></script>
+</head>
+<body>
+<div id="demo">
+ <select v-model="selected" options="myOptions"></select>
+</div>
+<script type="text/javascript">
+var myOptions = [
+  { text: 'A', value: 'a' },
+  { text: 'B', value: 'b' }
+]
+new Vue({
+    el: '#demo',
+    data: {
+        selected: 'a',
+        myOptions:['a', 'b', 'c']
+    }
+})
+</script>
+</body>
