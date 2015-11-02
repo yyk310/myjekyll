@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+<script src="http://esf.js.soufunimg.com/esf/zu/js/vue.js"></script>
+</head>
+<body>
+<div id="demo">
+	<div v-repeat="items">
+ <a href="#"  v-on="click:edit=true;">编辑</a>
+ <a href="#" v-show="edit">更新</a>
+ <a href="#"  v-show="edit">取消</a></div>
+</div>
+<script type="text/javascript">
+
+var v = new Vue({
+    el: '#demo',
+    data: {
+        selected: 'a',
+        items:['a', 'b', 'c'],
+        edit:false
+    },
+})
+</script>
+</body>

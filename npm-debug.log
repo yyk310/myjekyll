@@ -1,0 +1,105 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'c:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'c:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   'vue-validator',
+1 verbose cli   '--save-dev' ]
+2 info using npm@2.14.4
+3 info using node@v4.1.2
+4 verbose config Skipping project config: C:\Users\Administrator/.npmrc. (matches userconfig)
+5 verbose install initial load of C:\Users\Administrator\package.json
+6 warn package.json cncc@1.0.0 No repository field.
+7 warn package.json cncc@1.0.0 No README data
+8 warn package.json cncc@1.0.0 license should be a valid SPDX license expression
+9 verbose installManyTop reading scoped package data from C:\Users\Administrator\node_modules\admin\package.json
+10 verbose installManyTop reading scoped package data from C:\Users\Administrator\node_modules\babel-core\package.json
+11 verbose installManyTop reading scoped package data from C:\Users\Administrator\node_modules\babel-loader\package.json
+12 verbose installManyTop reading scoped package data from C:\Users\Administrator\node_modules\babel-runtime\package.json
+13 verbose installManyTop reading scoped package data from C:\Users\Administrator\node_modules\bundle-loader\package.json
+14 verbose installManyTop reading scoped package data from C:\Users\Administrator\node_modules\connect-file\package.json
+15 verbose installManyTop reading scoped package data from C:\Users\Administrator\node_modules\css-loader\package.json
+16 verbose installManyTop reading scoped package data from C:\Users\Administrator\node_modules\file-loader\package.json
+17 verbose installManyTop reading scoped package data from C:\Users\Administrator\node_modules\gulp\package.json
+18 verbose installManyTop reading scoped package data from C:\Users\Administrator\node_modules\gulp-clean\package.json
+19 verbose installManyTop reading scoped package data from C:\Users\Administrator\node_modules\gulp-concat\package.json
+20 verbose installManyTop reading scoped package data from C:\Users\Administrator\node_modules\gulp-jshint\package.json
+21 verbose installManyTop reading scoped package data from C:\Users\Administrator\node_modules\gulp-jslint\package.json
+22 verbose installManyTop reading scoped package data from C:\Users\Administrator\node_modules\gulp-minify-css\package.json
+23 verbose installManyTop reading scoped package data from C:\Users\Administrator\node_modules\gulp-rename\package.json
+24 verbose installManyTop reading scoped package data from C:\Users\Administrator\node_modules\gulp-rev\package.json
+25 verbose installManyTop reading scoped package data from C:\Users\Administrator\node_modules\gulp-rev-collector\package.json
+26 verbose installManyTop reading scoped package data from C:\Users\Administrator\node_modules\gulp-uglify\package.json
+27 verbose installManyTop reading scoped package data from C:\Users\Administrator\node_modules\gulpfile.js\package.json
+28 verbose installManyTop reading scoped package data from C:\Users\Administrator\node_modules\html-loader\package.json
+29 verbose installManyTop reading scoped package data from C:\Users\Administrator\node_modules\jade\package.json
+30 verbose installManyTop reading scoped package data from C:\Users\Administrator\node_modules\react\package.json
+31 verbose installManyTop reading scoped package data from C:\Users\Administrator\node_modules\rev\package.json
+32 verbose installManyTop reading scoped package data from C:\Users\Administrator\node_modules\style-loader\package.json
+33 verbose installManyTop reading scoped package data from C:\Users\Administrator\node_modules\stylus-loader\package.json
+34 verbose installManyTop reading scoped package data from C:\Users\Administrator\node_modules\template-html-loader\package.json
+35 verbose installManyTop reading scoped package data from C:\Users\Administrator\node_modules\test\package.json
+36 verbose installManyTop reading scoped package data from C:\Users\Administrator\node_modules\url-loader\package.json
+37 verbose installManyTop reading scoped package data from C:\Users\Administrator\node_modules\vue\package.json
+38 verbose installManyTop reading scoped package data from C:\Users\Administrator\node_modules\vue-html-loader\package.json
+39 verbose installManyTop reading scoped package data from C:\Users\Administrator\node_modules\vue-loader\package.json
+40 verbose installManyTop reading scoped package data from C:\Users\Administrator\node_modules\webpack\package.json
+41 info package.json gulp-clean@0.3.1 No license field.
+42 info package.json gulp@3.8.11 No license field.
+43 info package.json gulp-jshint@1.9.4 No license field.
+44 info package.json bundle-loader@0.5.4 No license field.
+45 info package.json gulp-rename@1.2.2 No license field.
+46 info package.json gulp-concat@2.5.2 No license field.
+47 info package.json gulp-minify-css@1.0.0 No license field.
+48 info package.json html-loader@0.3.0 No license field.
+49 info package.json vue-html-loader@1.0.0 No license field.
+50 verbose readDependencies loading dependencies from C:\Users\Administrator\package.json
+51 silly cache add args [ 'vue-validator', null ]
+52 verbose cache add spec vue-validator
+53 silly cache add parsed spec Result {
+53 silly cache add   raw: 'vue-validator',
+53 silly cache add   scope: null,
+53 silly cache add   name: 'vue-validator',
+53 silly cache add   rawSpec: '',
+53 silly cache add   spec: '*',
+53 silly cache add   type: 'range' }
+54 silly addNamed vue-validator@*
+55 verbose addNamed "*" is a valid semver range for vue-validator
+56 silly addNameRange { name: 'vue-validator', range: '*', hasData: false }
+57 silly mapToRegistry name vue-validator
+58 silly mapToRegistry using default registry
+59 silly mapToRegistry registry https://registry.npmjs.org/
+60 silly mapToRegistry uri https://registry.npmjs.org/vue-validator
+61 verbose addNameRange registry:https://registry.npmjs.org/vue-validator not in flight; fetching
+62 verbose request uri https://registry.npmjs.org/vue-validator
+63 verbose request no auth needed
+64 info attempt registry request try #1 at 14:18:48
+65 verbose request id 422c419c78ee544d
+66 http request GET https://registry.npmjs.org/vue-validator
+67 info retry will retry, error on last attempt: Error: read ECONNRESET
+68 info attempt registry request try #2 at 14:19:17
+69 http request GET https://registry.npmjs.org/vue-validator
+70 info retry will retry, error on last attempt: Error: read ECONNRESET
+71 info attempt registry request try #3 at 14:20:36
+72 http request GET https://registry.npmjs.org/vue-validator
+73 verbose stack Error: socket hang up
+73 verbose stack     at TLSSocket.onHangUp (_tls_wrap.js:1032:19)
+73 verbose stack     at TLSSocket.g (events.js:260:16)
+73 verbose stack     at emitNone (events.js:72:20)
+73 verbose stack     at TLSSocket.emit (events.js:166:7)
+73 verbose stack     at endReadableNT (_stream_readable.js:893:12)
+73 verbose stack     at doNTCallback2 (node.js:430:9)
+73 verbose stack     at process._tickCallback (node.js:344:17)
+74 verbose cwd C:\Users\Administrator\Desktop\n
+75 error Windows_NT 6.3.9600
+76 error argv "c:\\Program Files\\nodejs\\node.exe" "c:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "vue-validator" "--save-dev"
+77 error node v4.1.2
+78 error npm  v2.14.4
+79 error code ECONNRESET
+80 error network socket hang up
+80 error network This is most likely not a problem with npm itself
+80 error network and is related to network connectivity.
+80 error network In most cases you are behind a proxy or have bad network settings.
+80 error network
+80 error network If you are behind a proxy, please make sure that the
+80 error network 'proxy' config is set properly.  See: 'npm help config'
+81 verbose exit [ 1, true ]
