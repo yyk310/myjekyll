@@ -2,8 +2,9 @@ var vue = require('vue-loader')
 var webpack = require('webpack')
 
 module.exports = {
-  entry: './main.js',
+  entry: './src/main.js',
   output: {   
+    path: "F:/Project/RentManageNew/RentManagement/RentSite/Resource/Script/build",
     filename: 'build.js'
   },
   module: {

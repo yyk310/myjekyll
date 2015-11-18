@@ -2,13 +2,44 @@
 <html>
 <head>
     <title>发布个人房源-我要出租-搜房网</title>
-      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-   
-   
-    <link type="text/css" href="http://c.58cdn.com.cn/ui7/post/pc/zufang_v20151010155220.css" rel="stylesheet">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">   
+    <link type="text/css" href="http://esf.js.soufunimg.com/esf/zu/css/zufang_input.css" rel="stylesheet">
 </head>
 <body>
-	<div id="app"></div>
-     <script src="./build.js" type="text/javascript"></script>
+    <div id="app"></div>
+    <script src="F:/Project/RentManageNew/RentManagement/RentSite/Resource/Script/build/build.js" type="text/javascript"></script>    
+    <script type="text/javascript" charset="utf-8" src="http://esf.js.soufunimg.com/esf/zu/ueditor.all.min.js"> </script>    
+    <script type="text/javascript" charset="utf-8" src="http://esf.js.soufunimg.com/esf/zu/zh-cn.js"></script>
+    <script type="text/javascript" charset="utf-8" src="http://esf.js.soufunimg.com/esf/zu/js/laydate.js"></script>
+    <script type="text/javascript">
+        var ue = UE.getEditor('editor', {
+            UEDITOR_HOME_URL: 'http://esf.js.soufunimg.com/esf/zu/ueditor/',
+            toolbars: [
+                ['fontsize', 'forecolor', 'backcolor', 'bold', 'underline', '|', 'undo', 'redo', '|']
+            ],
+            autoHeightEnabled: true,
+            autoFloatEnabled: true,
+            elementPathEnabled: false,
+            wordCount: false,
+            fontsize: [10, 11, 12, 14, 16, 18, 20, 24, 36],
+            theme: 'default',
+            themePath: 'http://esf.js.soufunimg.com/esf/zu/ueditor/themes/',
+            iframeCssUrl: 'http://esf.js.soufunimg.com/esf/zu/ueditor/themes/iframe.css',
+            sourceEditor: 'textarea',
+            enableAutoSave: false,
+            initialContent:''
+            
+        });
+        var description = ""
+        ue.onblur = function(){
+            description = ue.getContent();
+        }
+        laydate({
+            elem: '#checkIndate',
+            format: 'YYYY-MM-DD', // 分隔符可以任意定义，该例子表示只显示年月
+            festival: true, //显示节日    
+        });
+
+     </script>
 </body>
 </html>
