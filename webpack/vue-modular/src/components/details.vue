@@ -7,21 +7,20 @@
 					<div v-class="tip:true,												
 						validate_error:validation.title.invalid
 						">
-						<span v-show="validation.title.required">请填写标题</span>					   
-					    <span v-show="validation.title.simple">标题太过简单</span>
+						<span v-show="validation.title.required">请填写标题</span>
 					    <span v-show="validation.title.contact">不允许包含联系方式</span>
 					    <span v-show="validation.title.minLength&&validation.title.dirty">标题不足5个字</span>
 					    <span v-show="validation.title.maxLength">标题大于30个字</span>
 					</div>
 					<div v-class="input_text_wrap:true, error:validation.title.invalid&&validation.title.dirty,success:validation.title.valid" style="position: relative;">
-						<input type="inputText" maxlength="30" v-model="title" v-validate="required,minLength:5,maxLength:30,contact,simple">
+						<input type="inputText" maxlength="30" v-model="title" v-validate="required,minLength:5,maxLength:30,contact">
 					</div>
 				</div>
 				<div class="rows_title"><span><span class="rows_title_star">*</span>标题</span></div>
 			</div>
 			<div class="rows_wrap clearfix custom_name">
 				<div class="rows_content">
-					<div class="tip validate_error">						
+					<div class="tip validate_error" id="desctip">						
 					</div>
 					<script id="editor" type="text/plain" style="width:540px;height:268px;" class="editor"></script>
 					<input type="hidden" v-model="description" id="desc"/>
@@ -43,8 +42,8 @@
 </template>
 <script>
 	var Vue = require('vue')
-        ,data = require('../data').data
-        ,validates = require('../validate').validates;  
+        ,data = require('./data').data
+        ,validates = require('./validate').validates;  
 	Vue.use(require('./vue-validator.min.js'));
 	module.exports = {
 		data:function(){

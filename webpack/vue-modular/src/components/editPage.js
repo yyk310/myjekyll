@@ -10,30 +10,31 @@ exports.editPage = function(data){
 	// 处理房源图片
 	function addFile(imgurls){
 		var imgarr = imgurls.split(',');
-		if (imgarr.length) {
+		if (imgurls&&imgarr.length) {
 			var $list = $("#fileList");
-			for (var i = imgarr.length - 1; i >= 0; i--) {
-				                      
-                var $li = $('<li data-url='+imgarr[i]+'><p class="imgWrap"></p></li>'),
-                $btns = $('<div class="file-panel"><span class="cancel">删除</span></div>').appendTo($li),
-                $img = $("<img>").appendTo($li),
-	            $wrap = $li.find('p.imgWrap');
-			  
-			    $li.appendTo($list);
+			for (var i = 0; i < imgarr.length; i++) {				                      
+                (function(index){
+                	var $li = $('<li data-url='+imgarr[index]+'><p class="imgWrap"></p></li>'),
+	                $btns = $('<div class="file-panel"><span class="cancel">删除</span></div>').appendTo($li),
+	                $img = $("<img>").appendTo($li),
+		            $wrap = $li.find('p.imgWrap');
+				  
+				    $li.appendTo($list);
 
-			    var img = $('<img src="' + imgarr[i] + '">');
-			    $wrap.empty().append(img);
-			    
-			    $li.on('mouseenter', function () {
-			        $btns.stop().animate({ height: 30 });
-			    });
+				    var img = $('<img src="' + imgarr[index] + '">');
+				    $wrap.empty().append(img);
+				    
+				    $li.on('mouseenter', function () {
+				        $btns.stop().animate({ height: 30 });
+				    });
 
-			    $li.on('mouseleave', function () {
-			        $btns.stop().animate({ height: 0 });
-			    });
-			    $btns.on('click', 'span', function () {			       
-		            $(this).parent().parent().remove();
-			    });	
+				    $li.on('mouseleave', function () {
+				        $btns.stop().animate({ height: 0 });
+				    });
+				    $btns.on('click', 'span', function () {			       
+			            $(this).parent().parent().remove();
+				    });	
+                }(i))
 			};
 		};
 	}	
@@ -47,7 +48,7 @@ exports.editPage = function(data){
 	this.room = data.Room;
 	this.hall = data.Hall;
 	this.toilet = data.Toilet;
-	this.area = data.Buildingarea; // 需要判断物业类型
+	
 	if (this.htype=='住宅'||this.htype=='别墅') {		
 		this.area = data.Buildingarea;
 		this.floor = data.Floor; 
@@ -57,12 +58,18 @@ exports.editPage = function(data){
 		this.sarea = data.Buildingarea;
 		this.sfloor = data.Floor; 
 		this.stotalFloor = data.Totlefloor 
-		this.sprice = data.Price; 
+		this.sprice = data.Price;
+		this.shopType = data.ShangYongType;
+		this.shopGrade = data.PuMianJiBieType;
+		this.shopState = data.ShopOfficeStatus;
+		foreq(this.manageCategorys,data.ManagementCategory);
 	}else{
 		this.oarea = data.Buildingarea;
 		this.ofloor = data.Floor; 
 		this.ototalFloor = data.Totlefloor 
 		this.oprice = data.Price; 
+		this.officeType = data.ShangYongType;
+		this.officeGrade = data.PuMianJiBieType;
 	}
 	
 	this.title = data.Title;
@@ -84,12 +91,11 @@ exports.editPage = function(data){
 	this.usermobile = data.MobileCode;
 	this.rentway = data.RentWay;
 	this.gender = data.RentGender;
-	this.priceType = data.PriceType;
+	this.priceType = data.Pricetype;
 	this.partner = data.IsShortrent;
 	this.limitdate = data.LimitDate;
 	this.issplit = data.Issplit;
 	this.iswuyefei = data.IsWuYeFei;
 	this.wuyefei = data.WuYeFei;
 	this.wuyecompany = data.WuYeCompany;
-	this.manageCategory = data.ManagementCategory;
 }

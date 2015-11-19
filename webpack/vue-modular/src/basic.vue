@@ -134,9 +134,10 @@
 </template>
 <script>
 	var Vue = require('vue')
-	    ,data = require('./data').data
-	    ,validates = require('./validate').validates
-	    ,editPage = require('./editPage').editPage	    
+	    ,data = require('./components/data').data
+	    ,validates = require('./components/validate').validates
+	    ,savePage = require('./components/savePage').savePage
+	    ,editPage = require('./components/editPage').editPage	    
 		,compA = require('./components/other.vue')
 	    ,compB = require('./components/details.vue')
 	    ,compC = require('./components/content.vue')
@@ -167,17 +168,17 @@
 				self.comarea = comarea;
 				self.address = obj.querySelector("cite").innerHTML;
 				self.hits = [];
+    		},    		
+    		// 重置位置信息
+    		resetValue:function(){    			
+				this.projcode = '';    			
+				this.address = '';
     		},
     		clickFunc:function(e){
     			if (e.target.tagName.toLowerCase() == "li") {
                     this.setValue(e.target);                                 
                 }                 
                 return false;
-    		},
-    		// 重置位置信息
-    		resetValue:function(){    			
-				this.projcode = '';    			
-				this.address = '';
     		},
 			changeClass:function(e,className){
 				if (e.type === "mouseover") {
@@ -291,11 +292,14 @@
 			},
 			change:function(t,p){				
 				var arr = document.getElementsByClassName("radio");
+				if (p=='htype'&&houseid) { return false};
 				this[p] = t;
 			},			
     		submit:function(){
     			// 房源描述
-    			if (this.description.length < 5|| this.description.length > 5000) { return};
+    			var desc = document.getElementById("desc").value;
+    			if (desc.length < 5|| desc.length > 5000) { return};
+    			this.description = desc;
     			// 房源图片
     			var imgarr = document.getElementById("fileList").querySelectorAll("li");
     			for (var i = 0; i < imgarr.length; i++) {
@@ -303,7 +307,7 @@
     					this.imgurl.push(imgarr[i].getAttribute("data-url"));
     				};    				
     			};
-
+    			this.titleimg = imgarr.length > 0?imgarr[0].getAttribute("data-url"):'';
     			// 房源配套
     			var eqarr = [],
     				tempEquitments = [];
@@ -331,77 +335,7 @@
     			this.manageCategory = mcarr.toString();
 
     			var data = this.$data;
-    			this.$http.post('saveHouse',{
-						Purpose:data.htype,				
-						Mright:data.rtype,
-						ProjName:data.projname,
-						ProjCode:data.projcode,
-						District:data.district,	
-						Comarea:data.comarea,	
-						Address:data.address,	
-						Room:data.room,
-						Hall:data.hall,
-						Toilet:data.toilet,
-						Buildingarea:(function(){
-							if (data.htype=='写字楼') {
-								return data.oarea;
-							}else if(data.htype=='商铺'){
-								return data.sarea;
-							}else{
-								return data.area;
-							}
-						}()),
-						Floor:(function(){
-							if (data.htype=='写字楼') {
-								return data.floor;
-							}else if(data.htype=='商铺'){
-								return data.sfloor;
-							}else{
-								return data.floor;
-							}
-						}()),
-						Totlefloor:(function(){
-							if (data.htype=='写字楼') {
-								return data.ototalFloor;
-							}else if(data.htype=='商铺'){
-								return data.stotalFloor;
-							}else{
-								return data.totalFloor;
-							}
-						}()),
-						Price:(function(){
-							if (data.htype=='写字楼') {
-								return data.oprice;
-							}else if(data.htype=='商铺'){
-								return data.sprice;
-							}else{
-								return data.price;
-							}
-						}()),
-						Title:data.title,
-						Description:data.description,
-						ExtendInfo:data.imgurl.toString(),
-						Fitment:data.fitment,
-						Forward:data.forward,
-						PayInfo:data.payinfo,
-						Equitment:data.equitment,
-						BeginTime:data.checkIndate,
-						ContactPerson:data.username,
-						MobileCode:data.usermobile,
-						RentWay:data.rentway,
-						RentGender:data.gender,
-						PriceType:data.priceType,
-						IsShortrent:data.partner,
-						ShangYongType:data.htype=='写字楼'?data.officeType:data.shopType,
-						PuMianJiBieType:data.htype=='写字楼'?data.officeGrade:data.shopGrade,
-						ShopOfficeStatus:data.shopState,
-						LimitDate:data.limitdate,
-						Issplit:data.issplit,
-						IsWuYeFei:data.iswuyefei,
-						WuYeFei:data.wuyefei,
-						WuYeCompany:data.wuyecompany,
-						ManagementCategory:data.manageCategory
-					}, function (data, status, request) {
+    			this.$http.post('saveHouse',savePage(data,houseid), function (data, status, request) {
 						if (data && data.code && data.code==100) {
 							window.location.href = data.url+"?url="+data.para;
 						};											

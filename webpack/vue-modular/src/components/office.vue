@@ -136,7 +136,7 @@
 	                </div>
            		</div>
 	        </div>
-	        <div class="rows_title"><span><span class="rows_title_star"></span>是否包含物业费</span></div>
+	        <div class="rows_title"><span><span class="rows_title_star">*</span>是否包含物业费</span></div>
     	</div>
 	    <div class="rows_wrap clearfix custom_name">
 	        <div class="rows_content">
@@ -164,8 +164,8 @@
 </template>
 <script>
 	var Vue = require('vue')
-        ,data = require('../data').data
-        ,validates = require('../validate').validates;  
+        ,data = require('./data').data
+        ,validates = require('./validate').validates;  
 	Vue.use(require('./vue-validator.min.js'));
 
 	module.exports = {		

@@ -133,26 +133,6 @@
 	    </div>
 	    <div class="rows_wrap clearfix custom_name">
 	        <div class="rows_content">
-	            <div v-class="tip:true,												
-					validate_error:validation.wuyefei.invalid
-					">
-	                <span v-show="validation.wuyefei.required">请填写数字</span>
-	                <span v-show="validation.wuyefei.numeric&&validation.wuyefei.dirty">物业费只能为数字</span>	               
-	            </div>	                      
-	            <div v-class="input_text_wrap:true, clearfix:true, error:validation.wuyefei.invalid&&validation.wuyefei.dirty,success:validation.wuyefei.valid" style="position: relative;">
-	                <input type="inputText" style="width: 128px;" v-model="wuyefei" v-validate="required,numeric,min:100,max:300000"><span>元/平米·月</span>
-	            </div>
-	             <div class="radio_wrap clearfix success">
-	                <div v-repeat="iswuyefeis" v-class="radio:true,focus:iswuyefei==text" data-value="{{text}}" v-on="click:change(text,'iswuyefei')">
-	                    <i></i>
-	                    <label>{{text}}</label>
-	                </div>
-           		</div>	
-	        </div>
-	        <div class="rows_title"><span><span class="rows_title_star">*</span>物业费</span></div>
-	    </div>
-	    <div class="rows_wrap clearfix custom_name">
-	        <div class="rows_content">
 	            <div class="radio_wrap clearfix success">
 	                <div v-repeat="issplits" v-class="radio:true,focus:issplit==text" data-value="{{text}}" v-on="click:change(text,'issplit')">
 	                    <i></i>
@@ -188,8 +168,8 @@
 </template>
 <script>
 	var Vue = require('vue')
-        ,data = require('../data').data
-        ,validates = require('../validate').validates;  
+        ,data = require('./data').data
+        ,validates = require('./validate').validates;  
 	Vue.use(require('./vue-validator.min.js'));
 	module.exports = {		
 		data:function(){

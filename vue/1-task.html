@@ -7,16 +7,19 @@
 </head>
 <body>
 <div id="task1">
-	<p>{{message + name }}</p>
-	<input v-model="name">
+	<p>{{message + name +sex}}</p>
+	<input v-model="name" id="aaaa" v-on="keyup:sex='男'">
+	<input v-model="sex" type="hidden" id="ssss"> 
 </div>
 <script type="text/javascript">
 	var vm = new Vue({
 		el:"#task1",
 		data:{
 			message:"Hello ",
-			name:""
+			name:"1",
+			sex:''
 		}
 	})
+	
 </script>
 </body>

@@ -50,8 +50,8 @@
 </template>
 <script>
 	var Vue = require('vue')
-        ,data = require('../data').data
-        ,validates = require('../validate').validates;  
+        ,data = require('./data').data
+        ,validates = require('./validate').validates;  
 	Vue.use(require('./vue-validator.min.js'));
 	module.exports = {		
 		data:function(){

@@ -38,10 +38,7 @@ exports.validates = {
   	},
   	contact:function(val){
   		return !/.*1[34578]\d{9}.*|.*(0\d{2,4}-)?[2-9]\d{6,7}(-\d{2,5})?.*|.*(?!\d+(-\d+){3,})[48]00(-?\d){7,10}.*/.test(val);
-  	},
-  	simple:function(val){
-  		return !/(.*)([\\u4e00-\\u9fa5]+)(.*)/.test(val);
-  	},
+  	},  	
   	specialSymbol:function(val){
 		return !/((?=[\x21-\x7e]+)[^A-Za-z0-9])/.test(val);
 	},
