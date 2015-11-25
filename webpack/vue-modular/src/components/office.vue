@@ -55,9 +55,9 @@
 	                <span v-show="(validation.ofloor.required||validation.ototalFloor.required)">请填写数字</span>
 	                <span v-show="(validation.ofloor.numeric||validation.ototalFloor.numeric)&&validation.ofloor.dirty">楼层只能为数字</span>
 	                <span v-show="(validation.ofloor.less_than||validation.ofloor.greater_than)&&validation.ofloor.dirty">楼层不能大于总楼层</span>
-	                <span v-show="validation.oarea.numeric&&validation.oarea.dirty">面积只能为数字</span>
+	                <span v-show="validation.oarea.float&&validation.oarea.dirty">面积只能为数字，允许两位小数</span>
 	                <span v-show="validation.oarea.min&&validation.oarea.dirty">面积不能小于1</span>
-	                <span v-show="validation.oarea.max&&validation.oarea.dirty">面积不能大于10000</span>
+	                <span v-show="validation.oarea.max&&validation.oarea.dirty">面积不能大于1000000</span>
 	            </div>
 	            <div v-class="input_text_wrap:true, clearfix:true, error:validation.ofloor.invalid&&validation.ofloor.dirty,success:validation.ofloor.valid" style="position: relative;">
 	                <span>第</span><input type="inputText" maxlength="2" style="width: 95px;" v-model="ofloor" v-validate="required,numeric,less_than:ototalFloor"><span>层</span>
@@ -66,7 +66,7 @@
 	                <span>共</span><input type="inputText" maxlength="2" style="width: 95px;" v-model="ototalFloor" v-validate="required,numeric,greater_than:ofloor"><span>层</span>
 	            </div>
 	            <div v-class="input_text_wrap:true, clearfix:true, error:validation.oarea.invalid&&validation.oarea.dirty,success:validation.oarea.valid" style="position: relative;">
-	                <span>共</span><input type="inputText" style="width: 95px;" v-model="oarea" v-validate="required,numeric,min:1,max:10000"><span>㎡</span>
+	                <span>共</span><input type="inputText" style="width: 95px;" v-model="oarea" v-validate="required,float,min:1,max:1000000"><span>㎡</span>
 	            </div>
 	        </div>
 	        <div class="rows_title"><span><span class="rows_title_star">*</span>楼层</span></div>
@@ -77,12 +77,12 @@
 					validate_error:validation.oprice.invalid
 					">
 	                <span v-show="validation.oprice.required">请填写数字</span>
-	                <span v-show="validation.oprice.numeric&&validation.oprice.dirty">租金只能为数字</span>
-	                <span v-show="validation.oprice.min&&validation.oprice.dirty">租金不能小于100</span>
-	                <span v-show="validation.oprice.max&&validation.oprice.dirty">租金不能大于300000</span>
+	                <span v-show="validation.oprice.float&&validation.oprice.dirty">租金只能为数字，允许两位小数</span>
+	                <span v-show="validation.oprice.min&&validation.oprice.dirty">租金不能小于1</span>
+	                <span v-show="validation.oprice.max&&validation.oprice.dirty">租金不能大于3000000</span>
 	            </div>
 	            <div v-class="input_text_wrap:true, clearfix:true, error:validation.oprice.invalid&&validation.oprice.dirty,success:validation.oprice.valid" style="position: relative;">
-	                <input type="inputText" style="width: 128px;" v-model="oprice" v-validate="required,numeric,min:100,max:300000"><span>{{priceType}}</span>
+	                <input type="inputText" style="width: 128px;" v-model="oprice" v-validate="required,float,min:1,max:3000000"><span>{{priceType}}</span>
 	            </div>
 	             <div class="selectordef success" id="divpriceType" style="z-index: 1481; width: 128px;" v-on="click:select($event,'divpriceType','priceType')">
 	                <div class="title">
@@ -115,10 +115,12 @@
 					validate_error:validation.wuyefei.invalid
 					">
 	                <span v-show="validation.wuyefei.required">请填写数字</span>
-	                <span v-show="validation.wuyefei.numeric&&validation.wuyefei.dirty">物业费只能为数字</span>	               
+	                <span v-show="validation.wuyefei.float&&validation.wuyefei.dirty">物业费只能为数字，允许两位小数</span>
+	                <span v-show="validation.wuyefei.min&&validation.wuyefei.dirty">物业费不能小于0</span>
+	                <span v-show="validation.wuyefei.max&&validation.wuyefei.dirty">物业费不能大于300000</span>	               
 	            </div>	                      
 	            <div v-class="input_text_wrap:true, clearfix:true, error:validation.wuyefei.invalid&&validation.wuyefei.dirty,success:validation.wuyefei.valid" style="position: relative;">
-	                <input type="inputText" style="width: 128px;" v-model="wuyefei" v-validate="required,numeric,min:100,max:300000"><span>元/平米·月</span>
+	                <input type="inputText" style="width: 128px;" v-model="wuyefei" v-validate="required,float,min:0,max:300000"><span>元/平米·月</span>
 	            </div>
 	           
            		 <div class="input_text_wrap clearfix" style="position: relative;">

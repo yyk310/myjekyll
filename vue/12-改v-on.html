@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+<script src="http://vuejs.org/js/vue.js"></script>
+</head>
+<body>
+<div id="task1">
+	<p>{{message + name +sex}}</p>
+	<input v-model="name" id="aaaa"  @click="aa(bb)">
+	<input v-model="sex" type="hidden" id="ssss"> 
+</div>
+<script type="text/javascript">
+	var vm = new Vue({
+		el:"#task1",
+		data:{
+			message:"Hello ",
+			name:"1",
+			sex:''
+		},methods:{
+			aa:function(p){
+				alert("from aa")
+				if (typeof p === 'function') {
+					p();
+				};
+			},
+			bb:function(){
+				alert("from bb")
+			}
+		}
+	})
+	
+</script>
+</body>

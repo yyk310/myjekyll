@@ -10,7 +10,7 @@
                 <span v-show="validation.room.numeric&&validation.room.dirty">室只能为数字</span>
                 <span v-show="validation.hall.numeric&&validation.hall.dirty">厅只能为数字</span>
                 <span v-show="validation.toilet.numeric&&validation.toilet.dirty">卫只能为数字</span>
-                <span v-show="validation.area.numeric&&validation.area.dirty">面积只能为数字</span>
+                <span v-show="validation.area.float&&validation.area.dirty">面积只能为数字，允许两位小数</span>
                 <span v-show="validation.area.min&&validation.area.dirty">面积不能小于1</span>
                 <span v-show="validation.area.max&&validation.area.dirty">面积不能大于10000</span>
 
@@ -25,7 +25,7 @@
                 <input type="inputText" maxlength="1" style="width: 95px;" v-model="toilet" v-validate="required,numeric"><span>卫</span>
             </div>
             <div v-class="input_text_wrap:true, clearfix:true, error:validation.area.invalid&&validation.area.dirty,success:validation.area.valid" style="position: relative;">
-                <span>共</span><input type="inputText" style="width: 95px;" v-model="area" v-validate="required,numeric,min:1,max:10000"><span>㎡</span>
+                <span>共</span><input type="inputText" style="width: 95px;" v-model="area" v-validate="required,float,min:1,max:10000"><span>㎡</span>
             </div>
         </div>
         <div class="rows_title"><span><span class="rows_title_star">*</span>房屋户型</span></div>

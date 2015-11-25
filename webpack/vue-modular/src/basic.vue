@@ -378,13 +378,16 @@
 		created:function(){
 			var self = this;
 			self.changeLocal();
+			var description = "";
 			if (houseid) {
 				self.$http.get('./EditPage',{'houseid':houseid}, function (data, status, request) {
-					editPage.call(self,data.entity);	         
+					editPage.call(self,data.entity);
+					description = data.entity.Description;	         
 			     }).error(function (data, status, request) {
 			          // handle error
 			     })
 			};
+			document.getElementById("desc").value = description;
 		},
 		components:{
 			"other":compA,

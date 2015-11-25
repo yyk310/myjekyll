@@ -23,10 +23,10 @@
 						">
 						<span v-show="validation.username.required">请填写联系人</span>	
 					    <span v-show="validation.username.specialSymbol">联系人不能填写特殊符号</span>
-					    <span v-show="(validation.username.minLength||validation.username.maxLength)&&validation.username.dirty">2～6个字，不能填写电话和特殊符号</span>					   
+					    <span v-show="(validation.username.minLength||validation.username.maxLength)&&validation.username.dirty">1～6个字，不能填写电话和特殊符号</span>					   
 					</div>
 					<div v-class="input_text_wrap:true, error:validation.username.invalid&&validation.username.dirty,success:validation.username.valid" style="position: relative;">
-						<input type="inputText" maxlength="6" v-model="username" v-validate="required,minLength:2,maxLength:6,specialSymbol">
+						<input type="inputText" maxlength="6" v-model="username" v-validate="required,minLength:1,maxLength:6,specialSymbol">
 					</div>
 				</div>
 				<div class="rows_title"><span><span class="rows_title_star">*</span>联系人</span></div>
