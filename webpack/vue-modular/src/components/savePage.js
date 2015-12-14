@@ -69,6 +69,7 @@ exports.savePage = function(data,houseid){
 		IsWuYeFei:data.iswuyefei,
 		WuYeFei:data.wuyefei,
 		WuYeCompany:data.wuyecompany,
-		ManagementCategory:data.manageCategory
+		ManagementCategory:data.manageCategory,
+		Isuse400:data.isuse400?1:0,
 	}
 }

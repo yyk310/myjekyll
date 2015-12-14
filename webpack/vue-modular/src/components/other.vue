@@ -44,7 +44,10 @@
 					</div>					
 				</div>
 				<div class="rows_title"><span><span class="rows_title_star">*</span>联系电话</span></div>
-			</div>				
+
+			</div>	
+			<div class="rows_wrap clearfix custom_name" style="padding-left: 160px"><span title="勾选开启400电话转接，别人拨打400电话转***就可以自动转接到您设置的手机上" id="ra400YesS" class="theinput ml6"><input name="isuse400" type="checkbox" id="isuse400"  v-model="isuse400"><span class="red ml5">推荐！</span>开启免费400电话转接，保护您的手机号码不被公开</span>
+				</div>			
 		</div>
 	</div>
 </template>

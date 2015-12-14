@@ -100,11 +100,11 @@
 					">
 	                <span v-show="validation.sprice.required">请填写数字</span>
 	                <span v-show="validation.sprice.float&&validation.sprice.dirty">租金只能为数字，允许两位小数</span>
-	                <span v-show="validation.sprice.min&&validation.sprice.dirty">租金不能小于1</span>
+	                <span v-show="validation.sprice.min&&validation.sprice.dirty">租金不能小于0</span>
 	                <span v-show="validation.sprice.max&&validation.sprice.dirty">租金不能大于3000000</span>
 	            </div>
 	            <div v-class="input_text_wrap:true, clearfix:true, error:validation.sprice.invalid&&validation.sprice.dirty,success:validation.sprice.valid" style="position: relative;">
-	                <input type="inputText" style="width: 128px;" v-model="sprice" v-validate="required,float,min:1,max:3000000"><span>{{priceType}}</span>
+	                <input type="inputText" style="width: 128px;" v-model="sprice" v-validate="required,float,min:0,max:3000000"><span>{{priceType}}</span>
 	            </div>
 	             <div class="selectordef success" id="divpriceType" style="z-index: 1481; width: 128px;" v-on="click:select($event,'divpriceType','priceType')">
 	                <div class="title">

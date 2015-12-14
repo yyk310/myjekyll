@@ -13,7 +13,7 @@
 					    <span v-show="validation.title.maxLength">标题大于30个字</span>
 					</div>
 					<div v-class="input_text_wrap:true, error:validation.title.invalid&&validation.title.dirty,success:validation.title.valid" style="position: relative;">
-						<input type="inputText" maxlength="30" v-model="title" v-validate="required,minLength:5,maxLength:30,contact">
+						<input type="inputText" maxlength="30" v-model="title" v-validate="required,minLength:5,maxLength:60,contact">
 					</div>
 				</div>
 				<div class="rows_title"><span><span class="rows_title_star">*</span>标题</span></div>

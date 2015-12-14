@@ -3,7 +3,7 @@ exports.validates = {
   		return /^[0-9]+$/.test(val);
   	},
   	float:function(val){
-  		return /^[1-9]\d{0,4}(\.\d{1,2})?$/.test(val);
+  		return /^[0-9]\d{0,4}(\.\d{1,2})?$/.test(val);
   	},
   	less_than:function(val, field){
   		if (!/^\-?[0-9]*\.?[0-9]+$/.test(field)) {

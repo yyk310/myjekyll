@@ -215,5 +215,6 @@ exports.data = {
 		{text:'闲置中',value:1},
 		{text:'新铺',value:2}
 	],
-	shopState:'0'
+	shopState:'0',
+	isuse400:''
 }

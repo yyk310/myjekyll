@@ -42,13 +42,13 @@
 								">
                         <span v-show="validation.projname.required">请填写小区名称</span>
                         <span v-show="validation.projname.maxLength||validation.projname.maxLength">小区名称限1-30个字符</span>
-                        <span v-show="validation.projname.specialSymbol">小区名称不能填写特殊符号</span>
+                        
                     </div>
                     <div v-class="input_text_wrap:true,
 								  error:validation.projname.invalid&&validation.projname.dirty,
 								  success:validation.projname.valid
 							">
-                        <input type="autoComplete" autocomplete="off" disableautocomplete="true" maxlength="30" placeholder="请输入小区名称" style="width: 395px;" v-model="projname" v-on="keyup:getProjname($event)" v-validate="required,maxLength:30,minLength:1,specialSymbol">
+                        <input type="autoComplete" autocomplete="off" disableautocomplete="true" maxlength="30" placeholder="请输入小区名称" style="width: 395px;" v-model="projname" v-on="keyup:getProjname($event)" v-validate="required,maxLength:30,minLength:1">
                         <div class="tooltip" v-show="hits.length" style="margin: 1px 0 0 -10px; overflow-y: auto; overflow-x: hidden; border: 1px solid #ccc; position: absolute; z-index: 497;">
                             <ul class="autoCompleteul" style="margin: 0; padding: 0; display: block; width: 100%; border: 0; background: #fff" v-on="click:clickFunc($event),mouseover:changeClass($event,'over'),mouseout:changeClass($event,'over')">
                                 <li v-repeat="item in hits" k="{{item.projname}}" newcode="{{item.newcode}}" district="{{item.district}}" comarea="{{item.comarea}}" class="">{{item.projname}}<cite>{{item.address}}</cite></li>
@@ -377,18 +377,17 @@
 		},				
 		created:function(){
 			var self = this;
-			self.changeLocal();
-			var description = "";
+			self.changeLocal();			
 			if (houseid) {
 				self.$http.get('./EditPage',{'houseid':houseid}, function (data, status, request) {
 					editPage.call(self,data.entity);
-					description = data.entity.Description;	         
+					var desc = document.getElementById("desc");
+					if (desc) {desc.value = self.description};						         
 			     }).error(function (data, status, request) {
 			          // handle error
 			     })
-			};
-			document.getElementById("desc").value = description;
-		},
+			};			
+		},		
 		components:{
 			"other":compA,
 			"details":compB,

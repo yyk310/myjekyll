@@ -12,29 +12,30 @@ exports.editPage = function(data){
 		var imgarr = imgurls.split(',');
 		if (imgurls&&imgarr.length) {
 			var $list = $("#fileList");
-			for (var i = 0; i < imgarr.length; i++) {				                      
-                (function(index){
-                	var $li = $('<li data-url='+imgarr[index]+'><p class="imgWrap"></p></li>'),
+			for (var i = 0; i < imgarr.length; i++) {
+				                      
+			    (function (index) {
+			        var $li = $('<li data-url=' + imgarr[index] + '><p class="imgWrap"></p></li>'),
 	                $btns = $('<div class="file-panel"><span class="cancel">删除</span></div>').appendTo($li),
 	                $img = $("<img>").appendTo($li),
 		            $wrap = $li.find('p.imgWrap');
-				  
-				    $li.appendTo($list);
 
-				    var img = $('<img src="' + imgarr[index] + '">');
-				    $wrap.empty().append(img);
-				    
-				    $li.on('mouseenter', function () {
-				        $btns.stop().animate({ height: 30 });
-				    });
+			        $li.appendTo($list);
 
-				    $li.on('mouseleave', function () {
-				        $btns.stop().animate({ height: 0 });
-				    });
-				    $btns.on('click', 'span', function () {			       
+			        var img = $('<img src="' + imgarr[index] + '">');
+			        $wrap.empty().append(img);
+
+			        $li.on('mouseenter', function () {
+			            $btns.stop().animate({ height: 30 });
+			        });
+
+			        $li.on('mouseleave', function () {
+			            $btns.stop().animate({ height: 0 });
+			        });
+			        $btns.on('click', 'span', function () {
 			            $(this).parent().parent().remove();
-				    });	
-                }(i))
+			        });
+			    }(i))
 			};
 		};
 	}	
@@ -75,7 +76,7 @@ exports.editPage = function(data){
 	this.title = data.Title;
 	this.description = data.Description;
 	addFile(data.ExtendInfo) ; // 需要图片处理
-	this.fitment = data.Fitment;
+	this.fitment = data.Fitment == "简单装修" ? "简装修" : data.Fitment;
 	this.forward = data.Forward;
 	this.payinfo = data.PayInfo;
 	if (this.htype=='住宅') {		
@@ -98,4 +99,5 @@ exports.editPage = function(data){
 	this.iswuyefei = data.IsWuYeFei;
 	this.wuyefei = data.WuYeFei;
 	this.wuyecompany = data.WuYeCompany;
+	this.isuse400 = data.Isuse400 == 1 ? true : false;
 }
