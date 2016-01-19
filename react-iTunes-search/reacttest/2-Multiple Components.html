@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <script src="http://facebook.github.io/react/js/react.js"></script>
+    <script src="http://facebook.github.io/react/js/react-dom.js"></script>
+    <script src="http://facebook.github.io/react/js/babel-browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+
+      class Avatar extends React.Component{
+        render (){
+          return (
+            <div>
+              <ProfilePic username={this.props.username}/>
+              <ProfileLink username={this.props.username}/>
+            </div>
+          )
+        }        
+      }
+      class ProfilePic extends React.Component{
+        render (){
+          return (
+            <img src={'http://my.fang.com/Resource/image/user.jpg'}/>
+          );
+        }
+      }
+      class ProfileLink extends React.Component{
+        render (){
+          var arrs = [
+            {id:1,text:'asd'},
+            {id:2,text:'qwe'},
+            {id:3,text:'zxc'},
+            {id:4,text:'cvb'},
+            {id:5,text:'dfg'}
+          ]
+          return (
+            <div>
+              <a href={'http://home.cnblogs.com/u/' + this.props.username}>{this.props.username}</a>
+              <ul>
+                {arrs.map(function(arr){
+                  return <li key={'id-'+arr.id}>{arr.text}</li>   
+                })}
+              </ul>  
+            </div>            
+          );
+        }
+      }
+         class HelloMessage extends React.Component {
+  render() {
+    return <div>Hello {this.props.name}</div>;
+  }
+}
+      ReactDOM.render(
+        <Avatar username="Sebastian" />,
+        document.getElementById("example")
+      )
+
+
+
+    </script>
+  </body>
+</html>

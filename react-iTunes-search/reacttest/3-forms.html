@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <script src="http://facebook.github.io/react/js/react.js"></script>
+    <script src="http://facebook.github.io/react/js/react-dom.js"></script>
+    <script src="http://facebook.github.io/react/js/babel-browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+      class Input extends React.Component{
+        constructor(props) {
+          super(props);
+          this.state = {value: 'hello'};
+        }
+        render(){
+          return <input value={this.state.value} type='text' onChange={(this.handleOnchange.bind(this))}/>
+        }
+        handleOnchange(event){
+          this.setState({value:event.target.value})
+        }
+      } 
+      
+      ReactDOM.render(
+        <Input />,
+        document.getElementById("example")
+      )
+
+
+
+    </script>
+  </body>
+</html>
