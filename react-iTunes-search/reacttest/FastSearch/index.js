@@ -1,13 +1,17 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { data } from './src/components/Condition/data';
-import App from './src/components/Condition/Condition';
+import Condition from './src/components/Condition/Condition';
+import Banner from './src/components/Banner/Banner';
+import Slider from './src/components/Slider/Slider';
 
 render(
-	<div>
-		{ data.map((item,index)=>
-			<App key={index} areas={item.arr} title={item.title}/>
-		)}
-	</div>,	
+	<div className="banner clearfix">
+		<Slider />
+		<div className="banner-con">
+			<Banner />
+			<Condition />
+		</div>
+	</div>
+	,	
 	document.querySelector('#app')
 );
