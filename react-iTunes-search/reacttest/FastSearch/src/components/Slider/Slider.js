@@ -26,10 +26,10 @@ export default class Slider extends Component {
 			height:'446px'
 		}
 		
-		const imgArr = this.state.imgArr;
+		const {imgArr} = this.state;
 		
 		return(
-			<div ref="mySlider" className="flexslider" style={relative}>
+			<div className="flexslider" style={relative}>
 		  		<ul className="slides">
 					{
 						imgArr.length > 0 && imgArr.map((item,index)=>

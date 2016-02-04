@@ -33,7 +33,7 @@ export default class Item extends Component {
 				<p>
 					{ 
 						conditions.map((item,index)=>
-						<a key={index} href="#" target="_blank">{item}</a>
+						<a key={index} href={item.url} target="_blank">{item.text}</a>
 						)
 					}
 				</p>				

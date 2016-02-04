@@ -8,33 +8,37 @@ export default class Condition extends Component {
 	    super(props);
 	    this.state = {
 	      areas:{},
-	      stations:{}
+	      stations:{},
+	      showCondition:true
 	    };
-	  }
+	}
   	componentWillMount () {
     	reqwest({
         url: '/RentSearch/PostService/GetCondition.aspx',
         type: 'json'
-      })
-      .then(response => this.setState({ areas:response}))
-      .fail(err => this.setState({ type: 'error' }));
+    	})
+	    .then(response => this.setState({ areas:response}))
+	    .fail(err => this.setState({ type: 'error' }));
 
-      reqwest({
-        url: '/RentSearch/PostService/GetCondition.aspx?type=track',
-        type: 'json'
-      })
-      .then(response => this.setState({ stations:response}))
-      .fail(err => this.setState({ type: 'error' }));
+		reqwest({
+		  url: '/RentSearch/PostService/GetCondition.aspx?type=track',
+		  type: 'json'
+		})
+		.then(response => this.setState({ stations:response}))
+		.fail(err => this.setState({ type: 'error' }));
   	}
-  	
+  	handleClick(e) {		
+		this.setState({showCondition: !this.state.showCondition})
+	}
 	render () {
 		const letter = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" ];
-		const {CList,District} = this.state.areas;
+		const {CList,District,Price} = this.state.areas;
 		data[0].options = [];
 		data[0].letter = letter;
 		District && District.map((item)=>{
 			data[0].options.push(item);
 		})
+
 		data[0].options && data[0].options.map((o)=>{
 			 o.children = {};
 			 letter.map((l,index)=>{			 	
@@ -58,10 +62,20 @@ export default class Condition extends Component {
 		data[1].options = [];
 		entitylist && entitylist.map((item)=>{
 			data[1].options.push({name: item.Name,url:"/house1-j0" + item.Esf_id + "/",stations:item.Stations});
-		})		
+		})
+
+		data[2].options = [];
+		
+		Price && Price.map((item)=>{
+			data[2].options.push({name: item.text,url:item.url });
+		})
+		const fold = {
+			overflow:'hidden',
+			height:'46px'
+		}		
 		return (
-			<div className="side-menu">
-				<h3>快速找房</h3>			
+			<div className="side-menu" style={this.state.showCondition?{}:fold}>
+				<h3 onClick={this.handleClick.bind(this)} className={this.state.showCondition?'':'arrdown'}>快速找房</h3>			
 				<ul className="side-menu-list">
 					{
 						data.map((item,index)=>
@@ -69,7 +83,7 @@ export default class Condition extends Component {
 						)		
 					}				
 				</ul>
-				<a className="zy_btn" href="#" target="_blank">房天下自营</a>
+				<a className="zy_btn" href="/house/a27/" target="_blank">房天下自营</a>
 			</div>	
 		)
 	}

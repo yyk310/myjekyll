@@ -29,13 +29,14 @@ export default class SubItem extends Component {
 				stemp[parseInt(index/itemCount, 10)] = [];
 			}
 			stemp[parseInt(index/itemCount, 10)].push(s);
-		})	
+		})
+			
 		return (
 				<li className = { this.state.showOption ? "on" : "" } onMouseEnter = {this.handleHover.bind(this)} onMouseLeave = {this.handleHover.bind(this)}>
 					<a href={url} target="_blank">{name}</a>											
-						<div className="draw-info" style={this.state.showOption?show:hide}>
+						
 							{
-								letter && 
+								letter && <div className="draw-info" style={this.state.showOption?show:hide}>
 								<div className= "qx-list" >
 								<p><a href="#">不限</a></p>
 								<ul>
@@ -59,21 +60,23 @@ export default class SubItem extends Component {
 																	}
 																</dd>																																									
 															</dl>		
-													)}
+															)}
 																															
 														</li>)
 													
-												}else if(children[l]){
+												}else {
+													if(children[l]){
+														temp.push({letter:l,sublist:children[l]})
+													}												
 													
-													temp.push({letter:l,sublist:children[l]})
-													if (l=='Z') {
-														temp.push({letter:'',sublist:[]})
+													if ((l=='Z' && temp.length===1)|| temp.length===2) {
+														if(temp.length===1){temp.push({letter:'',sublist:[]})}
 														var temparr = temp.concat();
 														temp = [];
 														return(<li key={index}>																	
 															{
 																temparr.map((t,index)=>
-																<dl key={index} className={index==0?"floatl":"floatr"}>
+																<dl key={index} className={ index === 0 ? "floatl" : "floatr" }>
 																<dt>{t.letter+(t.letter?"：":'')}</dt>
 																	<dd>
 																		{
@@ -81,8 +84,6 @@ export default class SubItem extends Component {
 																				<a key={index} href={s.url} target="_blank">{s.name}</a>
 																			)
 																		}
-																		
-																	
 																	</dd>																																									
 																</dl>		
 															)}																																	
@@ -93,10 +94,12 @@ export default class SubItem extends Component {
 										)
 									}																							
 								</ul>
-							</div>
+							</div></div>	
 							}
 							{
-								stemp && stemp.map((s,index)=>
+								stemp.length > 0 && 
+								<div className="draw-info" style={this.state.showOption?show:hide}>
+								{stemp.map((s,index)=>
 									<div key={index} className="subway-line">
 										<p className="sub-line"></p>
 										<ul>
@@ -107,9 +110,10 @@ export default class SubItem extends Component {
 											}											
 										</ul>
 									</div>
-								)
+								)}
+								</div>
 							}		
-						</div>																
+																					
 				</li>
 				
 		)
